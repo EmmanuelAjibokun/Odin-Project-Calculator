@@ -1,6 +1,7 @@
 const displayInput = document.getElementById('currentInput');
 const digitsBtn = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
+const calculateBtn = document.querySelector('.equality');
 
 let firstNum = 51;
 let secondNum = 3;
@@ -8,7 +9,7 @@ let isOperatorClicked = false;
 let operator = '+';
 
 
-const add = (firstNum, secondNum) => currentNum = firstNum + secondNum;
+const add = (firstNum, secondNum) => currentNum = parseInt(firstNum) + parseInt(secondNum);
 
 const subtract = (firstNum, secondNum) => currentNum = firstNum - secondNum;
 
@@ -39,8 +40,7 @@ operators.forEach((child) => {
     isOperatorClicked = true;
     operator = getOperator(e.target.getAttribute('value'));
     firstNum = displayInput.textContent;
-    console.log(operate(firstNum, operator, secondNum))
-    console.log(operator, firstNum)
+    displayInput.textContent = 0;
   })
 })
 
@@ -49,3 +49,10 @@ function getOperator(operator) {
   console.log(operator + " is clicked");
   return operator
 }
+
+// perform calculation task when equality sign btn is pressed
+calculateBtn.addEventListener('click', () => {
+  secondNum = displayInput.textContent;
+  console.log(operate(firstNum, operator, secondNum))
+  displayInput.textContent = '';
+})

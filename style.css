@@ -89,6 +89,6 @@ body {
 }
 
 .calculator >.inputField >.last-row >.point {
-  font-weight: bolder; 
+  font-weight: bolder;
   line-height: 30px;
 }
