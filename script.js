@@ -82,18 +82,6 @@ operators.forEach((child) => {
         console.log("none");
         break;
     }
-    // if(isOperatorClicked) {
-    //   e.target.style.backgroundColor = "rgb(229, 124, 255)";
-    //   isOperatorClicked = false;
-    //   operator = getOperator(e.target.getAttribute('value'));
-    //   firstNum = displayInput.textContent;
-    //   displayInput.textContent = 0;
-    // } else {
-    //   isOperatorClicked = true;
-    //   e.target.style.backgroundColor = "white";
-    //   firstNum = displayInput.textContent;
-    //   displayInput.textContent = 0;
-    // }
   })
 })
 
@@ -111,6 +99,7 @@ calculateBtn.addEventListener('click', () => {
   operators.forEach(button => {
     button.style.backgroundColor = "white";
   })
+  lastInput = operate(firstNum, operator, secondNum);
 })
 
 // add dot sign to displayed input
