@@ -28,6 +28,7 @@ console.log(operate(firstNum, operator, secondNum))
 
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
-    console.log(e.target.getAttribute('value'))
+    firstNum += e.target.getAttribute('value');
+    console.log(firstNum)
   })
 })
