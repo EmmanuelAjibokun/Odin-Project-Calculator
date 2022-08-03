@@ -108,8 +108,11 @@ calculateBtn.addEventListener('click', () => {
 // add dot sign to displayed input
 dot.addEventListener('click', () => {
   isCalculateBtnClicked = false;
-  displayInput.textContent += '.';
-  lastInput += '.';
+  let dotIndex = displayInput.textContent.indexOf('.');
+  if (dotIndex === -1) {
+    displayInput.textContent += '.';
+    lastInput += '.';
+  }
 })
 
 // implementation of AC button to clear the entire input while 
