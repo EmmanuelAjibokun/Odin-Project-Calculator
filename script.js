@@ -28,11 +28,11 @@ const modulus = (firstNum, secondNum) => currentNum = firstNum % secondNum;
 
 
 function operate(firstNum, operator, secondNum) {
-  if(operator === "+") return add(firstNum,secondNum);
-  if(operator === "-") return subtract(firstNum,secondNum)
-  if(operator === "*") return multiply(firstNum,secondNum)
-  if(operator === "/") return divide(firstNum,secondNum)
-  if(operator === "%") return modulus(firstNum,secondNum)
+  if(operator === "+") return Math.floor(add(firstNum,secondNum) * 1000000000) / 1000000000;
+  if(operator === "-") return Math.floor(subtract(firstNum,secondNum) * 1000000000) / 1000000000;
+  if(operator === "*") return Math.floor(multiply(firstNum,secondNum) * 1000000000) / 1000000000;
+  if(operator === "/") return Math.floor(divide(firstNum,secondNum) * 1000000000) / 1000000000;
+  if(operator === "%") return Math.floor(modulus(firstNum,secondNum) * 1000000000) / 1000000000;
 }
 
 console.log(operate(firstNum, operator, secondNum))
@@ -118,6 +118,9 @@ actions.forEach((action) => {
   action.addEventListener('click', (e) => {
     if(e.target.getAttribute('value') === 'clear') {
       displayInput.textContent = 0;
+      lastInput = 0;
+      firstNum = 0;
+      secondNum = 0;
     }
     if(e.target.getAttribute('value') === 'delete') {
       deleteLastInput(displayInput.textContent)
