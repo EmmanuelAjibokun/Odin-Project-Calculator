@@ -1,5 +1,6 @@
-const input = document.getElementById('currentInput');
+const displayInput = document.getElementById('currentInput');
 const digitsBtn = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
 
 let firstNum = 51;
 let secondNum = 3;
@@ -13,7 +14,6 @@ const multiply = (firstNum, secondNum) => currentNum = firstNum * secondNum;
 const divide = (firstNum, secondNum) => currentNum = firstNum / secondNum;
 const modulus = (firstNum, secondNum) => currentNum = firstNum % secondNum;
 
-const operation = {}
 
 function operate(firstNum, operator, secondNum) {
   if(operator === "+") return add(firstNum,secondNum);
@@ -28,7 +28,14 @@ console.log(operate(firstNum, operator, secondNum))
 
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
-    firstNum += e.target.getAttribute('value');
-    console.log(firstNum)
+    displayInput.textContent += e.target.getAttribute('value');
   })
 })
+
+for(let operator of operators) {
+  operator.addEventListener('click', checkClickedOperator)
+}
+
+function checkClickedOperator(operator) {
+  console.log(operator.target.value)
+}
