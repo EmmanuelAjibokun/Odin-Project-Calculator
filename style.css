@@ -87,3 +87,8 @@ body {
 .row button:active, .last-row button:active {
   background-color: var(--active-color);
 }
+
+.calculator >.inputField >.last-row >.point {
+  font-weight: bolder; 
+  line-height: 30px;
+}
