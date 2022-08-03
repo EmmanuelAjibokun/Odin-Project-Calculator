@@ -4,7 +4,9 @@ const operators = document.querySelectorAll('.operator');
 
 let firstNum = 51;
 let secondNum = 3;
-let operator = "+";
+let isOperatorClicked = false;
+let operator = '+';
+
 
 const add = (firstNum, secondNum) => currentNum = firstNum + secondNum;
 
@@ -32,10 +34,18 @@ digitsBtn.forEach((button) => {
   })
 })
 
-for(let operator of operators) {
-  operator.addEventListener('click', checkClickedOperator)
-}
+operators.forEach((child) => {
+  child.addEventListener('click', (e) => {
+    isOperatorClicked = true;
+    operator = getOperator(e.target.getAttribute('value'));
+    firstNum = displayInput.textContent;
+    console.log(operate(firstNum, operator, secondNum))
+    console.log(operator, firstNum)
+  })
+})
 
-function checkClickedOperator(operator) {
-  console.log(operator.target.value)
+function getOperator(operator) {
+  operator = operator; 
+  console.log(operator + " is clicked");
+  return operator
 }
