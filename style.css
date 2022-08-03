@@ -1,0 +1,90 @@
+:root {
+  --active-color: rgb(229, 124, 255);
+  --font: Arial;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 350px;
+
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.inputDisplay {
+  height: 60px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+  margin-bottom: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#previousInput, #currentInput {
+  border-radius: 10px;
+  /* border: none;
+  outline: none; */
+  font-size: 30px;
+  display: flex;
+  align-self: center;
+  justify-self: end;
+  margin-right: 5px;
+}
+
+/* input[type="number"] {
+  font-size: 24px;
+} */
+
+.inputField {
+  display: grid;
+  grid-template-rows: 1fr;
+  border-radius: 10px;
+  padding: 10px 0 0 0;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  height: 50px;
+}
+
+.last-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  height: 50px;
+}
+
+.row button, .last-row button {
+  font: var(--font);
+  font-size: 20px;
+  font-weight: 500;
+
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  transition: background-color 0.1s;
+}
+
+.row button:active, .last-row button:active {
+  background-color: var(--active-color);
+}
