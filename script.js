@@ -32,12 +32,15 @@ console.log(operate(firstNum, operator, secondNum))
 
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
-    if(isCalculateBtnClicked) {
-      displayInput.textContent = '';
-      displayInput.textContent += e.target.getAttribute('value');
-      isCalculateBtnClicked = false
-    } else {
-      displayInput.textContent += e.target.getAttribute('value');
+    if(displayInput.textContent === '0') displayInput.textContent = e.target.getAttribute('value');
+    else {
+      if(isCalculateBtnClicked) {
+        displayInput.textContent = '';
+        displayInput.textContent += e.target.getAttribute('value');
+        isCalculateBtnClicked = false
+      } else {
+        displayInput.textContent += e.target.getAttribute('value');
+      }
     }
   })
 })
