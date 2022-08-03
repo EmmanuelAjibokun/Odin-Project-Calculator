@@ -2,6 +2,7 @@ const displayInput = document.getElementById('currentInput');
 const digitsBtn = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const calculateBtn = document.querySelector('.equality');
+const dot = document.querySelector('.point');
 
 let firstNum = 51;
 let secondNum = 3;
@@ -10,7 +11,7 @@ let isCalculateBtnClicked = false;
 let operator = '+';
 
 
-const add = (firstNum, secondNum) => currentNum = parseInt(firstNum) + parseInt(secondNum);
+const add = (firstNum, secondNum) => currentNum = parseFloat(firstNum) + parseFloat(secondNum);
 
 const subtract = (firstNum, secondNum) => currentNum = firstNum - secondNum;
 
@@ -66,3 +67,10 @@ calculateBtn.addEventListener('click', () => {
   secondNum = displayInput.textContent;
   displayInput.textContent = operate(firstNum, operator, secondNum);
 })
+
+// add dot sign to displayed input
+dot.addEventListener('click', () => {
+  displayInput.textContent += '.';
+})
+
+//
