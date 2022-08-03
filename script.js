@@ -6,6 +6,7 @@ const calculateBtn = document.querySelector('.equality');
 let firstNum = 51;
 let secondNum = 3;
 let isOperatorClicked = false;
+let isCalculateBtnClicked = false;
 let operator = '+';
 
 
@@ -31,7 +32,13 @@ console.log(operate(firstNum, operator, secondNum))
 
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
-    displayInput.textContent += e.target.getAttribute('value');
+    if(isCalculateBtnClicked) {
+      displayInput.textContent = '';
+      displayInput.textContent += e.target.getAttribute('value');
+      isCalculateBtnClicked = false
+    } else {
+      displayInput.textContent += e.target.getAttribute('value');
+    }
   })
 })
 
@@ -52,7 +59,7 @@ function getOperator(operator) {
 
 // perform calculation task when equality sign btn is pressed
 calculateBtn.addEventListener('click', () => {
+  isCalculateBtnClicked = true;
   secondNum = displayInput.textContent;
-  console.log(operate(firstNum, operator, secondNum))
-  displayInput.textContent = '';
+  displayInput.textContent = operate(firstNum, operator, secondNum);
 })
