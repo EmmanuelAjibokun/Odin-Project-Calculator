@@ -7,9 +7,15 @@ const actions = document.querySelectorAll('.action')
 
 let firstNum = 51;
 let secondNum = 3;
-let isOperatorClicked = false;
+let isOperatorClicked = {
+  '%': false,
+  '/': false,
+  '*': false,
+  '+': false
+};
 let isCalculateBtnClicked = false;
 let operator = '+';
+let lastInput;
 
 
 const add = (firstNum, secondNum) => currentNum = parseFloat(firstNum) + parseFloat(secondNum);
@@ -34,25 +40,60 @@ console.log(operate(firstNum, operator, secondNum))
 
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
-    if(displayInput.textContent === '0') displayInput.textContent = e.target.getAttribute('value');
+    if(displayInput.textContent === '0') {
+      displayInput.textContent = e.target.getAttribute('value');
+      lastInput = e.target.getAttribute('value');
+    }
     else {
       if(isCalculateBtnClicked) {
         displayInput.textContent = '';
         displayInput.textContent += e.target.getAttribute('value');
-        isCalculateBtnClicked = false
+        isCalculateBtnClicked = false;
+        lastInput = e.target.getAttribute('value');
       } else {
         displayInput.textContent += e.target.getAttribute('value');
+        lastInput += e.target.getAttribute('value');
       }
     }
+    console.log(lastInput)
   })
 })
 
 operators.forEach((child) => {
   child.addEventListener('click', (e) => {
-    isOperatorClicked = true;
-    operator = getOperator(e.target.getAttribute('value'));
-    firstNum = displayInput.textContent;
-    displayInput.textContent = 0;
+    // isOperatorClicked = true;
+    switch(e.target.getAttribute('value')) {
+      case "+":
+        switchOperator(e)
+        break;
+      case "-":
+        switchOperator(e)
+      break;
+      case "/":
+        switchOperator(e)
+      break;
+      case "*":
+        switchOperator(e)
+      break;
+      case "%":
+        switchOperator(e)
+      break;
+      default:
+        console.log("none");
+        break;
+    }
+    // if(isOperatorClicked) {
+    //   e.target.style.backgroundColor = "rgb(229, 124, 255)";
+    //   isOperatorClicked = false;
+    //   operator = getOperator(e.target.getAttribute('value'));
+    //   firstNum = displayInput.textContent;
+    //   displayInput.textContent = 0;
+    // } else {
+    //   isOperatorClicked = true;
+    //   e.target.style.backgroundColor = "white";
+    //   firstNum = displayInput.textContent;
+    //   displayInput.textContent = 0;
+    // }
   })
 })
 
@@ -67,12 +108,16 @@ calculateBtn.addEventListener('click', () => {
   isCalculateBtnClicked = true;
   secondNum = displayInput.textContent;
   displayInput.textContent = operate(firstNum, operator, secondNum);
+  operators.forEach(button => {
+    button.style.backgroundColor = "white";
+  })
 })
 
 // add dot sign to displayed input
 dot.addEventListener('click', () => {
   isCalculateBtnClicked = false;
   displayInput.textContent += '.';
+  lastInput += '.';
 })
 
 // implementation of AC button to clear the entire input while 
@@ -83,12 +128,28 @@ actions.forEach((action) => {
       displayInput.textContent = 0;
     }
     if(e.target.getAttribute('value') === 'delete') {
-      console.log(e.target.getAttribute('value'))
+      deleteLastInput(displayInput.textContent)
+      displayInput.textContent = deleteLastInput(displayInput.textContent)
     }
   })
 })
 
 function deleteLastInput(input) {
-  const newInput = input.slice(0, -1)
+  const newInput = input.toString().slice(0, -1)
   return newInput
+}
+
+function switchOperator(e) {
+  isOperatorClicked[e.target.getAttribute('value')] = true;
+  e.target.style.backgroundColor = "rgb(229, 124, 255)";
+  operator = getOperator(e.target.getAttribute('value'));
+  firstNum = lastInput;
+  displayInput.textContent = 0;
+  for(let i=0; i<operators.length; i++) {
+    if(e.currentTarget !== operators[i]) {
+      operators[i].style.backgroundColor = "white"
+    }
+  }
+  console.log(operator + ' is clicked');
+  console.log(firstNum)
 }
