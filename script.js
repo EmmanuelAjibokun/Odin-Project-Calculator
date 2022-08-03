@@ -41,8 +41,10 @@ console.log(operate(firstNum, operator, secondNum))
 digitsBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
     if(displayInput.textContent === '0') {
+      isCalculateBtnClicked = false;
       displayInput.textContent = e.target.getAttribute('value');
       lastInput = e.target.getAttribute('value');
+      console.log(lastInput)
     }
     else {
       if(isCalculateBtnClicked) {
@@ -50,12 +52,13 @@ digitsBtn.forEach((button) => {
         displayInput.textContent += e.target.getAttribute('value');
         isCalculateBtnClicked = false;
         lastInput = e.target.getAttribute('value');
+        console.log(lastInput)
       } else {
         displayInput.textContent += e.target.getAttribute('value');
         lastInput += e.target.getAttribute('value');
+        console.log(lastInput)
       }
     }
-    console.log(lastInput)
   })
 })
 
@@ -99,7 +102,7 @@ calculateBtn.addEventListener('click', () => {
   operators.forEach(button => {
     button.style.backgroundColor = "white";
   })
-  lastInput = operate(firstNum, operator, secondNum);
+  lastInput = displayInput.textContent;
 })
 
 // add dot sign to displayed input
