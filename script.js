@@ -3,6 +3,7 @@ const digitsBtn = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const calculateBtn = document.querySelector('.equality');
 const dot = document.querySelector('.point');
+const actions = document.querySelectorAll('.action')
 
 let firstNum = 51;
 let secondNum = 3;
@@ -70,7 +71,24 @@ calculateBtn.addEventListener('click', () => {
 
 // add dot sign to displayed input
 dot.addEventListener('click', () => {
+  isCalculateBtnClicked = false;
   displayInput.textContent += '.';
 })
 
-//
+// implementation of AC button to clear the entire input while 
+// the delete button deletes the entire last input
+actions.forEach((action) => {
+  action.addEventListener('click', (e) => {
+    if(e.target.getAttribute('value') === 'clear') {
+      displayInput.textContent = 0;
+    }
+    if(e.target.getAttribute('value') === 'delete') {
+      console.log(e.target.getAttribute('value'))
+    }
+  })
+})
+
+function deleteLastInput(input) {
+  const newInput = input.slice(0, -1)
+  return newInput
+}
